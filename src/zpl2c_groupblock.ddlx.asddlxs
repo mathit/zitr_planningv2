@@ -12,6 +12,7 @@ annotate view ZPL2C_GROUPBLOCK with
   @UI.hidden: true
   UUID;
 
+
   @UI.hidden: true
   ParentUUID;
 

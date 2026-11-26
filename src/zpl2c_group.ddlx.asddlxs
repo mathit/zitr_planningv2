@@ -12,6 +12,7 @@ annotate view ZPL2C_GROUP with
   @UI.hidden: true
   UUID;
 
+
   @UI.selectionField: [ { position: 10 } ]
   @EndUserText.label: 'Groepsnummer'
   @UI.identification: [ { position: 20, label: 'Groepsnummer' } ]
