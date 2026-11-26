@@ -1,0 +1,15 @@
+{
+  "BASEINFO": {
+    "FROM": [
+      "ZPL2R_TEMPLATE"
+    ],
+    "ASSOCIATED": [
+      "ZPL2C_TMPLTEMODULE",
+      "ZPL2R_TEMPLATE",
+      "ZPL2R_TMPLTEMODULE"
+    ],
+    "BASE": [
+      "ZPL2R_TEMPLATE"
+    ]
+  }
+}
