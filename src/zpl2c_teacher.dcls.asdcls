@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZPL2C_TEACHER'
+@MappingRole: true
+define role ZPL2C_TEACHER {
+  grant select on ZPL2C_TEACHER
+  where INHERITING CONDITIONS FROM ENTITY ZPL2R_TEACHER REPLACING { ROOT WITH _BaseEntity };
+}

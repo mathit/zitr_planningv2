@@ -1,0 +1,10 @@
+{
+  "BASEINFO": {
+    "FROM": [
+      "ZPL2R_ROOM"
+    ],
+    "ASSOCIATED": [
+      "ZPL2R_ROOM"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZPL2R_TEACHER'
+@MappingRole: true
+define role ZPL2R_TEACHER {
+  grant select on ZPL2R_TEACHER
+  where TRUE;
+}

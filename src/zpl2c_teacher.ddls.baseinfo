@@ -1,0 +1,10 @@
+{
+  "BASEINFO": {
+    "FROM": [
+      "ZPL2R_TEACHER"
+    ],
+    "ASSOCIATED": [
+      "ZPL2R_TEACHER"
+    ]
+  }
+}

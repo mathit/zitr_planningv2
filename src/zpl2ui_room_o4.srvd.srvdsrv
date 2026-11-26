@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZPL2C_ROOM'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZPL2C_ROOM'
+  }
+}
+define service ZPL2UI_ROOM_O4 provider contracts odata_v4_ui {
+  expose ZPL2C_ROOM as Room;
+}

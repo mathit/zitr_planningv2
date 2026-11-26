@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZPL2C_TEACHER'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZPL2C_TEACHER'
+  }
+}
+define service ZPL2UI_TEACHER_O4 provider contracts odata_v4_ui {
+  expose ZPL2C_TEACHER as Teacher;
+}

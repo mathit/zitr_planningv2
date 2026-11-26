@@ -1,0 +1,20 @@
+projection implementation in class ZPL2BP_C_ROOM unique;
+strict ( 2 );
+extensible;
+use draft;
+use side effects;
+define behavior for ZPL2C_ROOM alias Room
+extensible
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+}

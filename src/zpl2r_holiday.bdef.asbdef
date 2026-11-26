@@ -1,0 +1,47 @@
+managed implementation in class ZPL2BP_R_HOLIDAY unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZPL2R_HOLIDAY alias Holiday
+persistent table ZPL2HOLIDAY
+extensible
+draft table ZPL2HOLIDAY_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+   UUID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   UUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZPL2HOLIDAY corresponding extensible
+  {
+    UUID = uuid;
+    HolidayDate = holiday_date;
+    Description = description;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+
+}

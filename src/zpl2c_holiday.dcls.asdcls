@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZPL2C_HOLIDAY'
+@MappingRole: true
+define role ZPL2C_HOLIDAY {
+  grant select on ZPL2C_HOLIDAY
+  where INHERITING CONDITIONS FROM ENTITY ZPL2R_HOLIDAY REPLACING { ROOT WITH _BaseEntity };
+}
