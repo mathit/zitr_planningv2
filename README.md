@@ -1,10 +1,13 @@
 # ZITR_PLANNINGV2 – iTrainee Planning
 
-Een SAP RAP-applicatie (ABAP RESTful Application Programming Model) voor het beheren van
-de stamgegevens van de iTrainee-planning: **docenten**, **lokalen** en **feestdagen**.
-Elke entiteit is te onderhouden via een eigen SAP Fiori elements-app op basis van OData V4.
+Een SAP RAP-applicatie (ABAP RESTful Application Programming Model) voor de iTrainee-planning.
+De applicatie beheert de stamgegevens (**docenten**, **lokalen** en **feestdagen**) en de
+**opleidingstemplates** waarmee een planning wordt opgebouwd. Elk onderdeel is te onderhouden
+via een eigen SAP Fiori elements-app op basis van OData V4.
 
 ## Functionaliteit
+
+### Stamgegevens
 
 | Entiteit   | Gegevens                                                              | Fiori-service         |
 |------------|-----------------------------------------------------------------------|-----------------------|
@@ -12,13 +15,27 @@ Elke entiteit is te onderhouden via een eigen SAP Fiori elements-app op basis va
 | Lokaal     | Naam, capaciteit, e-mailadres van het lokaal, actief                  | `ZPL2UI_ROOM_O4`      |
 | Feestdag   | Datum en omschrijving                                                 | `ZPL2UI_HOLIDAY_O4`   |
 
+### Opleidingstemplates
+
+Een template beschrijft de standaardopbouw van een opleidingstraject en bestaat uit drie niveaus
+(service `ZPL2UI_TEMPLATE_O4`):
+
+| Niveau                  | Entiteit             | Gegevens                                                                                   |
+|-------------------------|----------------------|--------------------------------------------------------------------------------------------|
+| Template (root)         | `ZPL2R_TEMPLATE`     | Naam, omschrijving, actief                                                                 |
+| Module                  | `ZPL2R_TMPLTEMODULE` | Modulenaam, volgorde, track, duur in dagen, ankerdag, voorgaande module, uitwisselbaar ja/nee |
+| Onderdeel (item)        | `ZPL2R_TEMPLATEITEM` | Titel, dag-offset, tijd van/tot, type, locatie, standaarddocent, type lokaal               |
+
+Modules en onderdelen worden binnen het template aangemaakt (compositie) en vallen onder
+dezelfde draft, lock en autorisatie als het template.
+
 Alle entiteiten ondersteunen aanmaken, wijzigen en verwijderen, met **draft-afhandeling**
 (tussentijds opslaan), optimistic locking via ETags en automatische administratieve velden
 (aangemaakt/gewijzigd door en op).
 
 ## Architectuur
 
-Per entiteit (`TEACHER`, `ROOM`, `HOLIDAY`) volgt het project de standaard RAP-opbouw:
+Per business object (`TEACHER`, `ROOM`, `HOLIDAY`, `TEMPLATE`) volgt het project de standaard RAP-opbouw:
 
 | Laag                 | Objecten                                          | Omschrijving                              |
 |----------------------|---------------------------------------------------|-------------------------------------------|
@@ -29,6 +46,10 @@ Per entiteit (`TEACHER`, `ROOM`, `HOLIDAY`) volgt het project de standaard RAP-o
 | UI-annotaties        | `ZPL2C_<ENTITEIT>` (DDLX)                          | Metadata-extensie voor Fiori elements     |
 | Toegangscontrole     | DCLS per view                                     | Autorisatiechecks                         |
 | Service              | `ZPL2UI_<ENTITEIT>_O4` (SRVD/SRVB)                 | Service-definitie en OData V4 UI-binding  |
+
+Het template-object heeft daarnaast child-entiteiten met eigen tabellen, views en projecties:
+`ZPL2TMPLTEMODULE` / `ZPL2R_TMPLTEMODULE` / `ZPL2C_TMPLTEMODULE` en
+`ZPL2TEMPLATEITEM` / `ZPL2R_TEMPLATEITEM` / `ZPL2C_TEMPLATEITEM`.
 
 ## Installatie
 
