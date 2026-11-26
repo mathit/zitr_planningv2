@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZPL2CL_TEMPLATE_IMPORT</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>Import sjabloon/docenten/lokalen uit Excel</DESCRIPT>
+    <DESCRIPT>Import van sjabloon, docenten en lokalen uit Excel</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
