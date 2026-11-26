@@ -1,0 +1,56 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeName: 'Groep',
+  typeNamePlural: 'Groepen',
+  title: { type: #STANDARD, value: 'GroupNumber' },
+  description: { type: #STANDARD, value: 'Status' }
+}
+annotate view ZPL2C_GROUP with
+{
+  @UI.facet: [ { id: 'GeneralInfo', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Algemeen', position: 10 },
+               { id: 'Blocks', purpose: #STANDARD, type: #LINEITEM_REFERENCE, label: 'Blokken', position: 20, targetElement: '_GroupBlock' } ]
+  @UI.hidden: true
+  UUID;
+
+  @UI.selectionField: [ { position: 10 } ]
+  @EndUserText.label: 'Groepsnummer'
+  @UI.identification: [ { position: 20, label: 'Groepsnummer' } ]
+  @UI.lineItem: [ { position: 20, label: 'Groepsnummer' } ]
+  GroupNumber;
+
+  @EndUserText.label: 'Sjabloon'
+  @UI.identification: [ { position: 30, label: 'Sjabloon' } ]
+  TemplateUUID;
+
+  @EndUserText.label: 'Startdatum'
+  @UI.identification: [ { position: 40, label: 'Startdatum' } ]
+  @UI.lineItem: [ { position: 40, label: 'Startdatum' } ]
+  StartDate;
+
+  @EndUserText.label: 'Starttijd lessen'
+  @UI.identification: [ { position: 50, label: 'Starttijd lessen' } ]
+  LessonStartTime;
+
+  @EndUserText.label: 'Coach SAP'
+  @UI.identification: [ { position: 60, label: 'Coach SAP' } ]
+  CoachSAPUUID;
+
+  @EndUserText.label: 'Coach Soft Skills'
+  @UI.identification: [ { position: 70, label: 'Coach Soft Skills' } ]
+  CoachSoftSkillsUUID;
+
+  @EndUserText.label: 'Aantal trainees'
+  @UI.identification: [ { position: 80, label: 'Aantal trainees' } ]
+  @UI.lineItem: [ { position: 80, label: 'Aantal trainees' } ]
+  TraineeCount;
+
+  @EndUserText.label: 'Status'
+  @UI.identification: [ { position: 90, label: 'Status' } ]
+  @UI.lineItem: [ { position: 90, label: 'Status' } ]
+  Status;
+
+  @EndUserText.label: 'Opmerkingen'
+  @UI.identification: [ { position: 100, label: 'Opmerkingen' } ]
+  Notes;
+
+}

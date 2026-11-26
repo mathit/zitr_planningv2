@@ -1,0 +1,96 @@
+managed implementation in class ZPL2BP_R_GROUP unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZPL2R_GROUP alias TraineeGroup
+persistent table ZPL2GROUP
+extensible
+draft table ZPL2GROUP_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+   UUID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   UUID;
+
+  field ( mandatory )
+   GroupNumber,
+   StartDate;
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZPL2GROUP corresponding extensible
+  {
+    U = U;
+    u = u;
+    GroupNumber = group_number;
+    TemplateUUID = template_uuid;
+    StartDate = start_date;
+    LessonStartTime = lesson_start_time;
+    CoachSAPUUID = coach_sap_uuid;
+    CoachSoftSkillsUUID = coach_soft_skills_uuid;
+    TraineeCount = trainee_count;
+    Status = status;
+    Notes = notes;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+
+  association _GroupBlock { create; with draft; }
+
+}
+
+define behavior for ZPL2R_GROUPBLOCK alias GroupBlock
+persistent table ZPL2GROUPBLOCK
+extensible
+draft table ZPL2GROUPBLOCK_D
+etag dependent by _Group
+lock dependent by _Group
+authorization dependent by _Group
+{
+  field ( readonly )
+   UUID,
+   ParentUUID;
+
+  field ( numbering : managed )
+   UUID;
+
+  update;
+  delete;
+
+  mapping for ZPL2GROUPBLOCK corresponding extensible
+  {
+    UUID = uuid;
+    ParentUUID = parent_uuid;
+    TemplateModuleUUID = template_module_uuid;
+    BlockName = block_name;
+    Track = track;
+    Sequence = sequence;
+    StartDate = start_date;
+    DurationDays = duration_days;
+    LeadTeacherUUID = lead_teacher_uuid;
+    IsManual = is_manual;
+  }
+
+  association _Group { with draft; }
+
+}

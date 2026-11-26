@@ -1,0 +1,56 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeName: 'Blok',
+  typeNamePlural: 'Blokken',
+  title: { type: #STANDARD, value: 'BlockName' },
+  description: { type: #STANDARD, value: 'Track' }
+}
+@UI.presentationVariant: [ { sortOrder: [ { by: 'Sequence', direction: #ASC } ] } ]
+annotate view ZPL2C_GROUPBLOCK with
+{
+  @UI.facet: [ { id: 'GeneralInfo', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Algemeen', position: 10 } ]
+  @UI.hidden: true
+  UUID;
+
+  @UI.hidden: true
+  ParentUUID;
+
+  @EndUserText.label: 'Sjabloonblok'
+  @UI.identification: [ { position: 10, label: 'Sjabloonblok' } ]
+  TemplateModuleUUID;
+
+  @EndUserText.label: 'Blok'
+  @UI.identification: [ { position: 20, label: 'Blok' } ]
+  @UI.lineItem: [ { position: 20, label: 'Blok' } ]
+  BlockName;
+
+  @EndUserText.label: 'Track'
+  @UI.identification: [ { position: 30, label: 'Track' } ]
+  @UI.lineItem: [ { position: 30, label: 'Track' } ]
+  Track;
+
+  @EndUserText.label: 'Volgorde'
+  @UI.identification: [ { position: 40, label: 'Volgorde' } ]
+  @UI.lineItem: [ { position: 40, label: 'Volgorde' } ]
+  Sequence;
+
+  @EndUserText.label: 'Startdatum'
+  @UI.identification: [ { position: 50, label: 'Startdatum' } ]
+  @UI.lineItem: [ { position: 50, label: 'Startdatum' } ]
+  StartDate;
+
+  @EndUserText.label: 'Duur (werkdagen)'
+  @UI.identification: [ { position: 60, label: 'Duur (werkdagen)' } ]
+  @UI.lineItem: [ { position: 60, label: 'Duur (werkdagen)' } ]
+  DurationDays;
+
+  @EndUserText.label: 'Hoofddocent'
+  @UI.identification: [ { position: 70, label: 'Hoofddocent' } ]
+  LeadTeacherUUID;
+
+  @EndUserText.label: 'Handmatig aangepast'
+  @UI.identification: [ { position: 80, label: 'Handmatig aangepast' } ]
+  @UI.lineItem: [ { position: 80, label: 'Handmatig aangepast' } ]
+  IsManual;
+
+}

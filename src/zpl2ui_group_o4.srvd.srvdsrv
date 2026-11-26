@@ -1,0 +1,12 @@
+@EndUserText: {
+  label: 'Groepen (planning)'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZPL2C_GROUP'
+  }
+}
+define service ZPL2UI_GROUP_O4 provider contracts odata_v4_ui {
+  expose ZPL2C_GROUP as TraineeGroup;
+  expose ZPL2C_GROUPBLOCK as GroupBlock;
+}

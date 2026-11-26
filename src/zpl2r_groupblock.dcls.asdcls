@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZPL2R_GROUPBLOCK'
+@MappingRole: true
+define role ZPL2R_GROUPBLOCK {
+  grant select on ZPL2R_GROUPBLOCK
+  where TRUE;
+}

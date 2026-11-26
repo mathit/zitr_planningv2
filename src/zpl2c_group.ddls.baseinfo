@@ -1,0 +1,15 @@
+{
+  "BASEINFO": {
+    "FROM": [
+      "ZPL2R_GROUP"
+    ],
+    "ASSOCIATED": [
+      "ZPL2C_GROUPBLOCK",
+      "ZPL2R_GROUP",
+      "ZPL2R_GROUPBLOCK"
+    ],
+    "BASE": [
+      "ZPL2R_GROUP"
+    ]
+  }
+}
