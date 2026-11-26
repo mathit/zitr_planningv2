@@ -1,6 +1,0 @@
-@EndUserText.label: 'ZPL2R_TMPLTEMODULE'
-@MappingRole: true
-define role ZPL2R_TMPLTEMODULE {
-  grant select on ZPL2R_TMPLTEMODULE
-  where TRUE;
-}

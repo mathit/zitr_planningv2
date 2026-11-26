@@ -1,6 +1,0 @@
-@EndUserText.label: 'ZPL2C_TEMPLATEITEM'
-@MappingRole: true
-define role ZPL2C_TEMPLATEITEM {
-  grant select on ZPL2C_TEMPLATEITEM
-  where INHERITING CONDITIONS FROM ENTITY ZPL2R_TEMPLATEITEM REPLACING { ROOT WITH _BaseEntity };
-}
