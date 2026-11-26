@@ -1,0 +1,59 @@
+projection implementation in class ZPL2BP_C_TEMPLATE000 unique;
+strict ( 2 );
+extensible;
+use draft;
+use side effects;
+define behavior for ZPL2C_TEMPLATE000 alias Template
+extensible
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _TemplateModule { create; with draft; }
+
+}
+
+define behavior for ZPL2C_TMPLTMDLE alias TemplateModule
+extensible
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Template { with draft; }
+  use association _TemplateItem { create; with draft; }
+
+}
+
+define behavior for ZPL2C_TMPLTITEM alias TemplateItem
+extensible
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Template { with draft; }
+  use association _TemplateModule { with draft; }
+  use association _TemplateItemTeacher { create; with draft; }
+
+}
+
+define behavior for ZPL2C_TMPLTTMTCHER alias TemplateItemTeacher
+extensible
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Template { with draft; }
+  use association _TemplateItem { with draft; }
+
+}

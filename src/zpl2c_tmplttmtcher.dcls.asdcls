@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZPL2C_TMPLTTMTCHER'
+@MappingRole: true
+define role ZPL2C_TMPLTTMTCHER {
+  grant select on ZPL2C_TMPLTTMTCHER
+  where INHERITING CONDITIONS FROM ENTITY ZPL2R_TMPLTTMTCHER REPLACING { ROOT WITH _BaseEntity };
+}

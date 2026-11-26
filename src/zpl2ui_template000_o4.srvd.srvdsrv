@@ -1,0 +1,14 @@
+@EndUserText: {
+  label: 'Service Definition for ZPL2C_TEMPLATE000'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZPL2C_TEMPLATE000'
+  }
+}
+define service ZPL2UI_TEMPLATE000_O4 provider contracts odata_v4_ui {
+  expose ZPL2C_TEMPLATE000 as Template;
+  expose ZPL2C_TMPLTMDLE as TemplateModule;
+  expose ZPL2C_TMPLTITEM as TemplateItem;
+  expose ZPL2C_TMPLTTMTCHER as TemplateItemTeacher;
+}
