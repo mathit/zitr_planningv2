@@ -17,16 +17,17 @@ via een eigen SAP Fiori elements-app op basis van OData V4.
 
 ### Opleidingstemplates
 
-Een template beschrijft de standaardopbouw van een opleidingstraject en bestaat uit drie niveaus
-(service `ZPL2UI_TEMPLATE_O4`):
+Een template beschrijft de standaardopbouw van een opleidingstraject en bestaat uit vier niveaus
+(service `ZPL2UI_TEMPLATE000_O4`):
 
-| Niveau                  | Entiteit             | Gegevens                                                                                   |
-|-------------------------|----------------------|--------------------------------------------------------------------------------------------|
-| Template (root)         | `ZPL2R_TEMPLATE`     | Naam, omschrijving, actief                                                                 |
-| Module                  | `ZPL2R_TMPLTEMODULE` | Modulenaam, volgorde, track, duur in dagen, ankerdag, voorgaande module, uitwisselbaar ja/nee |
-| Onderdeel (item)        | `ZPL2R_TEMPLATEITEM` | Titel, dag-offset, tijd van/tot, type, locatie, standaarddocent, type lokaal               |
+| Niveau                  | Entiteit (CDS)        | Tabel               | Gegevens                                                                                   |
+|-------------------------|-----------------------|---------------------|--------------------------------------------------------------------------------------------|
+| Template (root)         | `ZPL2R_TEMPLATE000`   | `ZPL2TEMPLATE000`   | Naam, omschrijving, actief                                                                 |
+| Module                  | `ZPL2R_TMPLTMDLE`     | `ZPL2TMPLTMDLE000`  | Modulenaam, volgorde, track, duur in dagen, ankerdag, voorgaande module, uitwisselbaar ja/nee |
+| Onderdeel (item)        | `ZPL2R_TMPLTITEM`     | `ZPL2TMPLTITEM000`  | Titel, dag-offset, tijd van/tot, type, locatie, hoofddocent, type lokaal                   |
+| Docent per onderdeel    | `ZPL2R_TMPLTTMTCHER`  | `ZPL2TMPLTTMTCHER`  | Docent die (naast de hoofddocent) aan het onderdeel is gekoppeld                           |
 
-Modules en onderdelen worden binnen het template aangemaakt (compositie) en vallen onder
+Modules, onderdelen en docenten worden binnen het template aangemaakt (compositie) en vallen onder
 dezelfde draft, lock en autorisatie als het template.
 
 Alle entiteiten ondersteunen aanmaken, wijzigen en verwijderen, met **draft-afhandeling**
@@ -35,7 +36,7 @@ Alle entiteiten ondersteunen aanmaken, wijzigen en verwijderen, met **draft-afha
 
 ## Architectuur
 
-Per business object (`TEACHER`, `ROOM`, `HOLIDAY`, `TEMPLATE`) volgt het project de standaard RAP-opbouw:
+Per business object (`TEACHER`, `ROOM`, `HOLIDAY`, `TEMPLATE000`) volgt het project de standaard RAP-opbouw:
 
 | Laag                 | Objecten                                          | Omschrijving                              |
 |----------------------|---------------------------------------------------|-------------------------------------------|
@@ -47,9 +48,9 @@ Per business object (`TEACHER`, `ROOM`, `HOLIDAY`, `TEMPLATE`) volgt het project
 | Toegangscontrole     | DCLS per view                                     | Autorisatiechecks                         |
 | Service              | `ZPL2UI_<ENTITEIT>_O4` (SRVD/SRVB)                 | Service-definitie en OData V4 UI-binding  |
 
-Het template-object heeft daarnaast child-entiteiten met eigen tabellen, views en projecties:
-`ZPL2TMPLTEMODULE` / `ZPL2R_TMPLTEMODULE` / `ZPL2C_TMPLTEMODULE` en
-`ZPL2TEMPLATEITEM` / `ZPL2R_TEMPLATEITEM` / `ZPL2C_TEMPLATEITEM`.
+Het template-object heeft daarnaast child-entiteiten met eigen tabellen (incl. drafttabel), views en projecties:
+`ZPL2R_/ZPL2C_TMPLTMDLE` (modules), `ZPL2R_/ZPL2C_TMPLTITEM` (onderdelen) en
+`ZPL2R_/ZPL2C_TMPLTTMTCHER` (docenten per onderdeel).
 
 ## Installatie
 
