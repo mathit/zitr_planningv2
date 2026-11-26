@@ -1,9 +1,10 @@
 # ZITR_PLANNINGV2 – iTrainee Planning
 
 Een SAP RAP-applicatie (ABAP RESTful Application Programming Model) voor de iTrainee-planning.
-De applicatie beheert de stamgegevens (**docenten**, **lokalen** en **feestdagen**) en de
-**opleidingstemplates** waarmee een planning wordt opgebouwd. Elk onderdeel is te onderhouden
-via een eigen SAP Fiori elements-app op basis van OData V4.
+De applicatie beheert de stamgegevens (**docenten**, **lokalen** en **feestdagen**), de
+**opleidingstemplates** waarmee een planning wordt opgebouwd en de **groepen** trainees die
+een traject volgen. Elk onderdeel is te onderhouden via een eigen SAP Fiori elements-app op
+basis van OData V4.
 
 ## Functionaliteit
 
@@ -30,13 +31,26 @@ Een template beschrijft de standaardopbouw van een opleidingstraject en bestaat 
 Modules, onderdelen en docenten worden binnen het template aangemaakt (compositie) en vallen onder
 dezelfde draft, lock en autorisatie als het template.
 
+### Groepen
+
+Een groep is een concrete lichting trainees die een traject volgt op basis van een template
+(service `ZPL2UI_GROUP_O4`). De groep bestaat uit twee niveaus:
+
+| Niveau          | Entiteit (CDS)       | Tabel              | Gegevens                                                                                                  |
+|-----------------|----------------------|--------------------|-----------------------------------------------------------------------------------------------------------|
+| Groep (root)    | `ZPL2R_GROUP`        | `ZPL2GROUP`        | Groepsnummer, gebruikt template, startdatum, begintijd lessen, SAP-coach, soft-skills-coach, aantal trainees, status, notities |
+| Groepblok       | `ZPL2R_GROUPBLOCK`   | `ZPL2GROUPBLOCK`   | Bijbehorende template-module, bloknaam, track, volgorde, startdatum, duur in dagen, hoofddocent, handmatig ja/nee |
+
+Groepsnummer en startdatum zijn verplicht. Groepblokken worden binnen de groep aangemaakt
+(compositie) en vallen onder dezelfde draft, lock en autorisatie als de groep.
+
 Alle entiteiten ondersteunen aanmaken, wijzigen en verwijderen, met **draft-afhandeling**
 (tussentijds opslaan), optimistic locking via ETags en automatische administratieve velden
 (aangemaakt/gewijzigd door en op).
 
 ## Architectuur
 
-Per business object (`TEACHER`, `ROOM`, `HOLIDAY`, `TEMPLATE000`) volgt het project de standaard RAP-opbouw:
+Per business object (`TEACHER`, `ROOM`, `HOLIDAY`, `TEMPLATE000`, `GROUP`) volgt het project de standaard RAP-opbouw:
 
 | Laag                 | Objecten                                          | Omschrijving                              |
 |----------------------|---------------------------------------------------|-------------------------------------------|
@@ -48,9 +62,10 @@ Per business object (`TEACHER`, `ROOM`, `HOLIDAY`, `TEMPLATE000`) volgt het proj
 | Toegangscontrole     | DCLS per view                                     | Autorisatiechecks                         |
 | Service              | `ZPL2UI_<ENTITEIT>_O4` (SRVD/SRVB)                 | Service-definitie en OData V4 UI-binding  |
 
-Het template-object heeft daarnaast child-entiteiten met eigen tabellen (incl. drafttabel), views en projecties:
-`ZPL2R_/ZPL2C_TMPLTMDLE` (modules), `ZPL2R_/ZPL2C_TMPLTITEM` (onderdelen) en
-`ZPL2R_/ZPL2C_TMPLTTMTCHER` (docenten per onderdeel).
+Child-entiteiten met eigen tabellen (incl. drafttabel), views en projecties:
+- Template: `ZPL2R_/ZPL2C_TMPLTMDLE` (modules), `ZPL2R_/ZPL2C_TMPLTITEM` (onderdelen) en
+  `ZPL2R_/ZPL2C_TMPLTTMTCHER` (docenten per onderdeel)
+- Groep: `ZPL2R_/ZPL2C_GROUPBLOCK` (groepblokken)
 
 ## Installatie
 
