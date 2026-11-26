@@ -1,0 +1,12 @@
+projection implementation in class ZPL2BP_C_IMPORT unique;
+strict ( 2 );
+
+define behavior for ZPL2C_IMPORT alias Import
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action runImport;
+}

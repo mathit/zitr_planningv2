@@ -1,0 +1,42 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeName: 'Import',
+  typeNamePlural: 'Imports',
+  title: { type: #STANDARD, value: 'FileName' },
+  description: { type: #STANDARD, value: 'Status' }
+}
+@UI.presentationVariant: [ { sortOrder: [ { by: 'LocalCreatedAt', direction: #DESC } ] } ]
+annotate view ZPL2C_IMPORT with
+{
+  @UI.facet: [ { id: 'General', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Importbestand', position: 10 } ]
+  @UI.lineItem: [ { type: #FOR_ACTION, dataAction: 'runImport', label: 'Importeren' } ]
+  @UI.identification: [ { type: #FOR_ACTION, dataAction: 'runImport', label: 'Importeren' } ]
+  @UI.hidden: true
+  UUID;
+
+  @EndUserText.label: 'Bestandsnaam'
+  @UI.lineItem: [ { position: 10, label: 'Bestandsnaam' } ]
+  FileName;
+
+  @UI.hidden: true
+  MimeType;
+
+  @EndUserText.label: 'Excel-bestand'
+  @UI.identification: [ { position: 10, label: 'Excel-bestand' } ]
+  Attachment;
+
+  @EndUserText.label: 'Status'
+  @UI.lineItem: [ { position: 20, label: 'Status' } ]
+  @UI.identification: [ { position: 20, label: 'Status' } ]
+  Status;
+
+  @EndUserText.label: 'Resultaat'
+  @UI.lineItem: [ { position: 30, label: 'Resultaat' } ]
+  @UI.identification: [ { position: 30, label: 'Resultaat' } ]
+  @UI.multiLineText: true
+  Message;
+
+  @EndUserText.label: 'GeÃ¼pload op'
+  @UI.lineItem: [ { position: 40, label: 'GeÃ¼pload op' } ]
+  LocalCreatedAt;
+}

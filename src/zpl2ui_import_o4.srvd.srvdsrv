@@ -1,0 +1,6 @@
+@EndUserText: {
+  label: 'Import sjabloon uit Excel'
+}
+define service ZPL2UI_IMPORT_O4 provider contracts odata_v4_ui {
+  expose ZPL2C_IMPORT as Import;
+}
