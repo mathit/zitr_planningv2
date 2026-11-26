@@ -37,8 +37,7 @@ authorization master( global )
 
   mapping for ZPL2GROUP corresponding extensible
   {
-    U = U;
-    u = u;
+    UUID = uuid;
     GroupNumber = group_number;
     TemplateUUID = template_uuid;
     StartDate = start_date;
